@@ -17,146 +17,171 @@
             --success: #27AE60; --danger: #C0392B; --pending: #F39C12;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         body.light-theme { background-color: var(--background-light); color: var(--text-primary-light); }
         body.dark-theme { background-color: var(--background-dark); color: var(--text-primary-dark); }
-        #app { max-width: 500px; margin: 0 auto; padding-bottom: 90px; }
-        .page { display: none; padding: 15px; }
-        .page.active { display: block; animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        #app { max-width: 500px; margin: 0 auto; padding-bottom: 80px; }
         
-        /* Premium Small Header */
+        /* Premium Header */
         .profile-header {
-            padding: 10px 15px; border-bottom: 1px solid;
+            padding: 15px 20px; border-bottom: 1px solid;
             display: flex; align-items: center; justify-content: space-between;
             position: sticky; top: 0; z-index: 1001; backdrop-filter: blur(10px);
         }
         .light-theme .profile-header { background-color: rgba(255,255,255,0.9); border-bottom-color: var(--border-light); }
         .dark-theme .profile-header { background-color: rgba(40, 55, 71, 0.9); border-bottom-color: var(--border-dark); }
-        .header-user { display: flex; align-items: center; gap: 10px; }
-        #user-photo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary-color); object-fit: cover; }
-        #user-name { font-size: 0.9rem; font-weight: 700; }
-        .header-balance { text-align: right; }
-        .header-balance span { font-size: 0.7rem; opacity: 0.7; display: block; }
-        #user-balance { font-size: 1rem; font-weight: 700; color: var(--primary-color); }
+        .header-user { display: flex; align-items: center; gap: 12px; }
+        #user-photo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary-color); object-fit: cover; }
+        #user-name { font-size: 1rem; font-weight: 700; }
+        #user-balance { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
 
-        /* General UI Elements */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
-        .stat-card { padding: 12px; border-radius: 12px; text-align: center; border: 1px solid; }
+        .page { display: none; padding: 15px; }
+        .page.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .stat-card { padding: 15px; border-radius: 12px; text-align: center; border: 1px solid; transition: transform 0.2s; }
         .light-theme .stat-card { background-color: var(--surface-light); border-color: var(--border-light); }
         .dark-theme .stat-card { background-color: var(--surface-dark); border-color: var(--border-dark); }
-        .stat-card h3 { font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; opacity: 0.7; }
-        .stat-card p { font-size: 1.1rem; font-weight: 600; color: var(--primary-color); }
-
-        .chart-container, .earning-wallet-card, .menu-card { padding: 15px; border-radius: 15px; margin-top: 15px; border: 1px solid; }
+        .stat-card h3 { font-size: 0.75rem; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; opacity: 0.8; }
+        .stat-card p { font-size: 1.3rem; font-weight: 600; color: var(--primary-color); }
+        
+        /* Chart */
+        .chart-container, .earning-wallet-card, .menu-card { padding: 20px; border-radius: 15px; margin-top: 20px; border: 1px solid; }
         .light-theme .chart-container, .light-theme .earning-wallet-card, .light-theme .menu-card { background-color: var(--surface-light); border-color: var(--border-light); }
         .dark-theme .chart-container, .dark-theme .earning-wallet-card, .dark-theme .menu-card { background-color: var(--surface-dark); border-color: var(--border-dark); }
+        .chart { display: flex; justify-content: space-around; align-items: flex-end; height: 130px; border-left: 1px solid; border-bottom: 1px solid; padding-top: 10px; margin-top: 10px; }
+        .bar { width: 10%; background: linear-gradient(to top, var(--primary-color), var(--secondary-color)); border-radius: 5px 5px 0 0; position: relative; }
+        .chart-labels { display: flex; justify-content: space-around; font-size: 0.7rem; margin-top: 5px; opacity: 0.7; }
 
-        .action-btn { padding: 12px; border-radius: 10px; border: none; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        /* Task Container */
+        .task-container { padding: 18px; border-radius: 15px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; border: 1px solid; }
+        .light-theme .task-container { background-color: var(--surface-light); border-color: var(--border-light); }
+        .dark-theme .task-container { background-color: var(--surface-dark); border-color: var(--border-dark); }
+        .task-icon-img { width: 45px; height: 45px; border-radius: 10px; object-fit: cover; }
+        .action-btn { padding: 10px 20px; font-size: 0.9rem; font-weight: 600; color: #fff; border: none; border-radius: 10px; cursor: pointer; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); }
+        .action-btn:disabled { background: #808B96; opacity: 0.6; cursor: not-allowed; }
 
-        /* Friend Page Styles */
-        .invite-section { display: flex; gap: 10px; margin-top: 15px; }
-        .invite-btn { flex: 1; background: #0088cc; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .copy-btn { width: 48px; height: 48px; background: var(--border-dark); color: white; border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        
-        .friends-list { list-style: none; margin-top: 15px; }
-        .friend-item { display: flex; align-items: center; padding: 10px; margin-bottom: 10px; border-radius: 12px; border: 1px solid; }
-        .light-theme .friend-item { background: #f9f9f9; border-color: var(--border-light); }
-        .dark-theme .friend-item { background: #2c3e50; border-color: var(--border-dark); }
-        .friend-avatar { width: 35px; height: 35px; border-radius: 50%; margin-right: 12px; border: 1px solid var(--primary-color); }
+        /* Friend Page Special */
+        .invite-box { margin-top: 15px; }
+        .invite-input-grp { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .invite-input-grp input { flex: 1; padding: 12px; border-radius: 10px; border: 1px dashed var(--primary-color); background: none; color: inherit; font-size: 0.85rem; text-align: center; }
+        .copy-btn { width: 48px; height: 48px; border-radius: 10px; border: none; background: var(--primary-color); color: white; cursor: pointer; font-size: 1.2rem; }
+        .invite-forward-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #0088cc; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
+
+        .friend-item { display: flex; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 12px; border: 1px solid; }
+        .friend-item img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--primary-color); margin-right: 12px; }
         .friend-info { flex: 1; }
-        .friend-name { font-size: 0.85rem; font-weight: 600; }
-        .friend-reward { font-size: 0.75rem; color: var(--success); font-weight: 700; }
+        .friend-info b { font-size: 0.9rem; display: block; }
+        .friend-info span { font-size: 0.75rem; color: var(--success); font-weight: 600; }
+
+        /* History & Leaderboard */
+        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid; font-size: 0.9rem; }
+        .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: white; text-transform: capitalize; }
+        .leaderboard-item { display: flex; align-items: center; padding: 10px; border-radius: 10px; margin-bottom: 8px; border: 1px solid; }
+        .rank-box { width: 30px; font-weight: 700; color: var(--primary-color); }
 
         /* Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 500px; margin: 0 auto; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid; z-index: 1000; }
         .light-theme .bottom-nav { background-color: var(--surface-light); border-top-color: var(--border-light); }
         .dark-theme .bottom-nav { background-color: var(--surface-dark); border-top-color: var(--border-dark); }
-        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.65rem; color: inherit; opacity: 0.6; flex: 1; }
-        .nav-btn i { font-size: 1.2rem; margin-bottom: 4px; }
+        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.7rem; color: inherit; opacity: 0.6; flex: 1; }
+        .nav-btn i { font-size: 1.3rem; margin-bottom: 4px; }
         .nav-btn.active { color: var(--primary-color); opacity: 1; }
 
-        /* Loader & Popups */
+        /* Loader */
         #app-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .light-theme #app-loader { background: var(--background-light); } .dark-theme #app-loader { background: var(--background-dark); }
-        .spinner { width: 40px; height: 40px; border: 4px solid rgba(0,0,0,0.1); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
+        .loader-spinner { width: 50px; height: 50px; border: 5px solid rgba(231, 76, 60, 0.2); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
         .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 10000; }
-        .popup-content { padding: 25px; border-radius: 20px; text-align: center; width: 80%; max-width: 320px; }
-        .light-theme .popup-content { background: white; color: #333; } .dark-theme .popup-content { background: var(--surface-dark); color: white; }
+        .popup-content { padding: 30px; border-radius: 20px; text-align: center; width: 85%; max-width: 350px; }
+        .light-theme .popup-content { background: white; } .dark-theme .popup-content { background: var(--surface-dark); }
     </style>
 </head>
-<body class="light-theme">
-    <div id="app-loader"><div class="spinner"></div><p id="loading-progress" style="margin-top:10px;">0%</p></div>
-    <div id="popup" class="popup-overlay"><div class="popup-content"><div id="popup-body"></div></div></div>
+<body class="dark-theme">
+    <div id="app-loader">
+        <div class="loader-spinner"></div>
+        <p id="loading-progress" style="margin-top: 15px; font-weight: 700; font-size: 1.2rem;">0%</p>
+    </div>
+
+    <div id="popup" class="popup-overlay"><div class="popup-content" id="popup-body"></div></div>
 
     <div id="app" style="display: none;">
         <header class="profile-header">
             <div class="header-user">
                 <img id="user-photo" src="https://via.placeholder.com/80">
-                <h1 id="user-name">Loading...</h1>
+                <h1 id="user-name">User</h1>
             </div>
-            <div class="header-balance">
-                <span>Main Balance</span>
-                <div id="user-balance">0.00 TK</div>
-            </div>
+            <div id="user-balance">0.00 TK</div>
         </header>
 
-        <main id="main-content">
-            <!-- Home Page -->
+        <main>
+            <!-- Home -->
             <div id="home-page" class="page active">
                 <div class="stats-grid">
-                    <div class="stat-card"><h3>Daily Ads</h3><p id="daily-ads">0 / 0</p></div>
-                    <div class="stat-card"><h3>Total Earnings</h3><p id="total-earned">0.00</p></div>
+                    <div class="stat-card"><h3>Daily Ads</h3><p id="daily-ads">0/0</p></div>
+                    <div class="stat-card"><h3>Total Refer</h3><p id="total-ref">0</p></div>
+                    <div class="stat-card"><h3>Total Ads</h3><p id="total-ads">0</p></div>
+                    <div class="stat-card"><h3>Income</h3><p id="total-earned">0.00</p></div>
                 </div>
                 <div class="chart-container">
-                    <h3 style="font-size: 0.8rem; margin-bottom:10px;">Last 7 Days (TK)</h3>
-                    <div id="earnings-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 100px;"></div>
+                    <h3 style="font-size: 0.9rem;">7 Days Revenue</h3>
+                    <div id="earnings-chart" class="chart"></div>
+                    <div id="chart-labels" class="chart-labels"></div>
                 </div>
-                <div id="dynamic-links-container"></div>
+                <div id="dynamic-links-container" style="margin-top: 15px;"></div>
             </div>
 
-            <!-- Tasks Page -->
+            <!-- Tasks -->
             <div id="tasks-page" class="page">
                 <div class="earning-wallet-card">
                     <h3>Earning Wallet</h3>
-                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--primary-color);" id="ew-balance">0.00</p>
-                    <button id="move-btn" class="action-btn" style="width: 100%;" disabled>Move to Main Balance</button>
+                    <p style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin: 10px 0;" id="ew-balance">0.00 TK</p>
+                    <small style="opacity: 0.7;">Move to main balance when 100 TK</small>
+                    <button id="move-btn" class="action-btn" style="width:100%; margin-top: 15px;" disabled>Transfer Now</button>
                 </div>
-                <div id="ad-task-container" style="margin-top: 15px;"></div>
-                <h3 style="margin-top:20px;">Bonus Tasks</h3>
+                <div id="ad-task-container" style="margin-top: 20px;"></div>
+                <h2 style="font-size: 1.1rem; margin: 20px 0 10px;">Bonus Tasks</h2>
                 <div id="dynamic-tasks-container"></div>
             </div>
 
-            <!-- Friend Page -->
+            <!-- Friend -->
             <div id="friend-page" class="page">
                 <h2>Invite Friends</h2>
                 <div class="menu-card">
-                    <p style="font-size: 0.85rem; opacity: 0.8;">Earn <b><span id="ref-bonus-text">0</span> TK</b> for every friend who joins!</p>
-                    <div class="invite-section">
-                        <button class="invite-btn" id="invite-forward-btn"><i class="fab fa-telegram-plane"></i> Invite your friend</button>
-                        <button class="copy-btn" id="copy-link-btn"><i class="fas fa-copy"></i></button>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px;">Earn <b><span id="ref-bonus-val">0</span> TK</b> for every valid referral!</p>
+                    <div class="invite-box">
+                        <div class="invite-input-grp">
+                            <input type="text" id="ref-link-input" readonly>
+                            <button class="copy-btn" id="copy-btn"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <button class="invite-forward-btn" id="forward-btn"><i class="fab fa-telegram-plane"></i> Invite your friend</button>
                     </div>
                 </div>
-                <h3 style="margin-top: 25px;">My Friend (<span id="friend-count">0</span>)</h3>
-                <ul class="friends-list" id="friends-list-ul"></ul>
+
+                <h3 style="margin-top: 25px; margin-bottom: 15px;">My Friends (<span id="friend-count">0</span>)</h3>
+                <div id="friends-list-container"></div>
             </div>
 
-            <!-- Profile Page -->
+            <!-- Profile -->
             <div id="profile-page" class="page">
-                <button class="menu-item-btn action-btn" id="go-leaderboard" style="width: 100%; margin-bottom: 20px; background: var(--surface-dark);"><i class="fas fa-trophy"></i> View Leaderboard</button>
+                <div class="menu-card" style="padding: 10px; margin-bottom: 20px;">
+                    <button class="action-btn" id="go-leaderboard" style="width: 100%; background: var(--surface-dark); border: 1px solid var(--border-dark);"><i class="fas fa-trophy"></i> View Leaderboard</button>
+                </div>
                 <div id="withdraw-section"></div>
-                <h3 style="margin-top: 20px;">Withdrawal History</h3>
+                <h3 style="margin-top: 25px; margin-bottom: 10px;">Withdrawal History</h3>
                 <div id="history-list"></div>
             </div>
 
-            <!-- Leaderboard Page (Sub-page) -->
+            <!-- Leaderboard Sub-page -->
             <div id="leaderboard-page" class="page">
-                <button id="back-to-profile" style="background:none; border:none; color:inherit; margin-bottom:15px; cursor:pointer;"><i class="fas fa-arrow-left"></i> Back</button>
+                <button id="back-profile" style="background:none; border:none; color:inherit; margin-bottom:15px; cursor:pointer;"><i class="fas fa-arrow-left"></i> Back to Profile</button>
                 <div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">
-                    <button class="toggle-btn active" data-board="referral">Top Referrers</button>
-                    <button class="toggle-btn" data-board="earning">Top Earners</button>
+                    <button class="action-btn board-toggle active" data-board="referral">Top Referrers</button>
+                    <button class="action-btn board-toggle" data-board="earning" style="background:none; border: 1px solid var(--border-dark);">Top Earners</button>
                 </div>
                 <div id="leaderboard-list"></div>
             </div>
@@ -166,7 +191,7 @@
             <button class="nav-btn active" data-page="home-page"><i class="fas fa-home"></i><span>Home</span></button>
             <button class="nav-btn" data-page="tasks-page"><i class="fas fa-tasks"></i><span>Tasks</span></button>
             <button class="nav-btn" data-page="friend-page"><i class="fas fa-users"></i><span>Friend</span></button>
-            <button class="nav-btn" data-page="profile-page"><i class="fas fa-user"></i><span>Profile</span></button>
+            <button class="nav-btn" data-page="profile-page"><i class="fas fa-wallet"></i><span>Profile</span></button>
         </nav>
     </div>
 
@@ -192,21 +217,30 @@
         let appConfig = {}; let userState = {}; let tgUser = tg.initDataUnsafe.user || {id: 0, first_name: "User"};
         let earningWallet = parseFloat(localStorage.getItem('ew_' + tgUser.id) || 0);
 
-        const init = async () => {
-            document.body.className = `${tg.colorScheme}-theme`;
-            tg.expand();
+        const updateProgress = (p) => { document.getElementById('loading-progress').textContent = p + "%"; };
 
+        const init = async () => {
+            tg.ready(); tg.expand();
+            document.body.className = `${tg.colorScheme}-theme`;
+            
             try {
+                updateProgress(20);
                 const confSnap = await db.ref('config').once('value');
                 appConfig = confSnap.val() || {};
                 
+                updateProgress(50);
                 await loadUser();
+                
+                updateProgress(80);
                 renderUI();
                 loadAdSdk();
                 setupNav();
                 
-                document.getElementById('app-loader').style.display = 'none';
-                document.getElementById('app').style.display = 'block';
+                updateProgress(100);
+                setTimeout(() => {
+                    document.getElementById('app-loader').style.display = 'none';
+                    document.getElementById('app').style.display = 'block';
+                }, 500);
             } catch (e) { console.error(e); }
         };
 
@@ -215,9 +249,15 @@
             const snap = await userRef.once('value');
             if (snap.exists()) {
                 userState = snap.val();
+                // Check for new day
+                const today = new Date().toISOString().slice(0, 10);
+                if(userState.lastAdDate !== today) {
+                    userState.dailyAdCount = 0; userState.lastAdDate = today;
+                    await userRef.update({ dailyAdCount: 0, lastAdDate: today });
+                }
             } else {
                 const startParam = tg.initDataUnsafe.start_param;
-                userState = { id: tgUser.id, firstName: tgUser.first_name, balance: 0, referrals: 0, referredBy: startParam || null, totalEarned: 0, dailyAdCount: 0, lifetimeAdCount: 0, lastAdDate: new Date().toISOString().slice(0, 10), completedTasks: {} };
+                userState = { id: tgUser.id, firstName: tgUser.first_name, photoUrl: tgUser.photo_url || '', balance: 0, referrals: 0, referredBy: startParam || null, totalEarned: 0, dailyAdCount: 0, lifetimeAdCount: 0, lastAdDate: new Date().toISOString().slice(0, 10), completedTasks: {} };
                 await userRef.set(userState);
                 if (startParam && startParam != tgUser.id) {
                     await db.ref(`users/${startParam}`).transaction(curr => {
@@ -231,25 +271,6 @@
             }
         };
 
-        const renderUI = () => {
-            document.getElementById('user-photo').src = tgUser.photo_url || 'https://via.placeholder.com/80';
-            document.getElementById('user-name').textContent = userState.firstName;
-            document.getElementById('user-balance').textContent = userState.balance.toFixed(2) + " TK";
-            document.getElementById('daily-ads').textContent = `${userState.dailyAdCount} / ${appConfig.dailyAdLimit}`;
-            document.getElementById('total-earned').textContent = userState.totalEarned.toFixed(2);
-            document.getElementById('ew-balance').textContent = earningWallet.toFixed(2);
-            document.getElementById('move-btn').disabled = earningWallet < 100;
-            document.getElementById('ref-bonus-text').textContent = appConfig.referralBonus;
-            document.getElementById('friend-count').textContent = userState.referrals || 0;
-
-            renderAdSection();
-            renderBonusTasks();
-            renderWithdrawSection();
-            renderHistory();
-            renderEarningsChart();
-            renderDynamicLinks();
-        };
-
         const loadAdSdk = () => {
             if (!appConfig.adZoneId) return;
             const s = document.createElement('script');
@@ -259,25 +280,47 @@
             document.body.appendChild(s);
         };
 
+        const renderUI = () => {
+            document.getElementById('user-photo').src = tgUser.photo_url || 'https://via.placeholder.com/80';
+            document.getElementById('user-name').textContent = userState.firstName;
+            document.getElementById('user-balance').textContent = userState.balance.toFixed(2) + " TK";
+            document.getElementById('daily-ads').textContent = `${userState.dailyAdCount} / ${appConfig.dailyAdLimit}`;
+            document.getElementById('total-ref').textContent = userState.referrals || 0;
+            document.getElementById('total-ads').textContent = userState.lifetimeAdCount || 0;
+            document.getElementById('total-earned').textContent = userState.totalEarned.toFixed(2);
+            document.getElementById('ew-balance').textContent = earningWallet.toFixed(2);
+            document.getElementById('move-btn').disabled = earningWallet < 100;
+            document.getElementById('ref-bonus-val').textContent = appConfig.referralBonus;
+            document.getElementById('friend-count').textContent = userState.referrals || 0;
+            document.getElementById('ref-link-input').value = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
+
+            renderAdSection();
+            renderBonusTasks();
+            renderWithdrawSection();
+            renderHistory();
+            renderChart();
+            renderDynamicLinks();
+        };
+
         const renderAdSection = () => {
             const container = document.getElementById('ad-task-container');
             const now = Date.now();
             if (userState.breakUntil && now < userState.breakUntil) {
                 const min = Math.ceil((userState.breakUntil - now)/60000);
-                container.innerHTML = `<div class="stat-card">Break Time: ${min} min left</div>`;
+                container.innerHTML = `<div class="task-container"><h3>Break Time</h3><p>Wait ${min} min</p><button class="action-btn" disabled>Waiting</button></div>`;
             } else if (userState.dailyAdCount >= appConfig.dailyAdLimit) {
-                container.innerHTML = `<div class="stat-card">Daily Limit Reached</div>`;
+                container.innerHTML = `<div class="task-container"><h3>Limit Reached</h3><p>Come back tomorrow</p><button class="action-btn" disabled>Done</button></div>`;
             } else {
-                container.innerHTML = `<button class="action-btn" id="watch-btn" style="width:100%"><i class="fas fa-play"></i> Watch Ad (${appConfig.adValue} TK)</button>`;
+                container.innerHTML = `<div class="task-container"><h3>Rewarded Video</h3><p>Earn ${appConfig.adValue} TK</p><button class="action-btn" id="watch-btn">Watch Now</button></div>`;
                 document.getElementById('watch-btn').onclick = handleWatchAd;
             }
         };
 
         const handleWatchAd = async () => {
             const showAd = window[`show_${appConfig.adZoneId}`];
-            if (typeof showAd !== 'function') return tg.showAlert("Ad not ready...");
+            if (typeof showAd !== 'function') return tg.showAlert("Ad not ready. Please wait.");
             
-            document.getElementById('popup-body').innerHTML = `<h3>Loading Ad...</h3>`;
+            document.getElementById('popup-body').innerHTML = `<div class="loader-spinner" style="margin: 0 auto;"></div><h3>Loading...</h3>`;
             document.getElementById('popup').style.display = 'flex';
             
             try {
@@ -286,36 +329,39 @@
                 earningWallet += appConfig.adValue;
                 localStorage.setItem('ew_' + tgUser.id, earningWallet);
                 userState.dailyAdCount++;
+                userState.lifetimeAdCount++;
                 userState.totalEarned += appConfig.adValue;
                 
-                const updates = { dailyAdCount: userState.dailyAdCount, totalEarned: userState.totalEarned };
+                const updates = { dailyAdCount: userState.dailyAdCount, lifetimeAdCount: userState.lifetimeAdCount, totalEarned: userState.totalEarned };
                 if (userState.dailyAdCount % appConfig.adsPerBreak === 0) updates.breakUntil = Date.now() + (appConfig.breakDuration * 60000);
                 
                 await db.ref(`users/${tgUser.id}`).update(updates);
                 await db.ref(`userEarnings/${tgUser.id}/${new Date().toISOString().slice(0,10)}`).set(firebase.database.ServerValue.increment(appConfig.adValue));
                 
                 renderUI();
-                tg.showAlert("Reward added to Earning Wallet!");
+                tg.showAlert("Success! Reward added to Earning Wallet.");
             } catch (e) { document.getElementById('popup').style.display = 'none'; }
         };
 
         const loadFriendsList = async () => {
-            const list = document.getElementById('friends-list-ul');
-            list.innerHTML = "Loading...";
+            const container = document.getElementById('friends-list-container');
+            container.innerHTML = "<p style='text-align:center;'>Loading...</p>";
             const snap = await db.ref('users').orderByChild('referredBy').equalTo(tgUser.id.toString()).once('value');
-            list.innerHTML = "";
+            container.innerHTML = "";
+            let count = 0;
             snap.forEach(child => {
-                const friend = child.val();
-                list.innerHTML += `
-                    <li class="friend-item">
-                        <img src="${friend.photoUrl || 'https://via.placeholder.com/40'}" class="friend-avatar">
+                count++;
+                const f = child.val();
+                container.innerHTML += `
+                    <div class="friend-item">
+                        <img src="${f.photoUrl || 'https://via.placeholder.com/40'}">
                         <div class="friend-info">
-                            <div class="friend-name">${friend.firstName}</div>
-                            <div class="friend-reward">Income: +${appConfig.referralBonus} TK</div>
+                            <b>${f.firstName}</b>
+                            <span>Commission: +${appConfig.referralBonus} TK</span>
                         </div>
-                    </li>`;
+                    </div>`;
             });
-            if (!list.innerHTML) list.innerHTML = "<p style='text-align:center; opacity:0.5;'>No friends invited yet.</p>";
+            if(count === 0) container.innerHTML = "<p style='text-align:center; opacity:0.6;'>No friends invited yet.</p>";
         };
 
         const setupNav = () => {
@@ -324,29 +370,29 @@
                     document.querySelectorAll('.nav-btn, .page').forEach(el => el.classList.remove('active'));
                     btn.classList.add('active');
                     document.getElementById(btn.dataset.page).classList.add('active');
-                    if (btn.dataset.page === 'friend-page') loadFriendsList();
+                    if(btn.dataset.page === 'friend-page') loadFriendsList();
                 };
             });
 
-            document.getElementById('invite-forward-btn').onclick = () => {
-                const link = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
-                const text = encodeURIComponent("Orange 🍊 App এ জয়েন করে অ্যাড দেখে ইনকাম করুন!");
-                tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=${text}`);
+            document.getElementById('copy-btn').onclick = () => {
+                const link = document.getElementById('ref-link-input');
+                link.select();
+                navigator.clipboard.writeText(link.value);
+                tg.showAlert("Link Copied!");
             };
 
-            document.getElementById('copy-link-btn').onclick = () => {
-                const link = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
-                navigator.clipboard.writeText(link);
-                tg.showAlert("Link copied!");
+            document.getElementById('forward-btn').onclick = () => {
+                const text = encodeURIComponent("Orange 🍊 অ্যাপে অ্যাড দেখে ইনকাম করুন! আমার লিংকে জয়েন করুন।");
+                const url = `https://t.me/share/url?url=${encodeURIComponent(document.getElementById('ref-link-input').value)}&text=${text}`;
+                tg.openTelegramLink(url);
             };
 
             document.getElementById('move-btn').onclick = async () => {
                 await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(earningWallet));
                 userState.balance += earningWallet;
-                earningWallet = 0;
-                localStorage.setItem('ew_' + tgUser.id, 0);
+                earningWallet = 0; localStorage.setItem('ew_'+tgUser.id, 0);
                 renderUI();
-                tg.showAlert("Balance transferred!");
+                tg.showAlert("Balance Transferred!");
             };
 
             document.getElementById('go-leaderboard').onclick = () => {
@@ -354,40 +400,39 @@
                 document.getElementById('leaderboard-page').classList.add('active');
                 renderLeaderboard('referral');
             };
-            document.getElementById('back-to-profile').onclick = () => {
+            document.getElementById('back-profile').onclick = () => {
                 document.getElementById('leaderboard-page').classList.remove('active');
                 document.getElementById('profile-page').classList.add('active');
             };
-        };
 
-        const renderBonusTasks = () => {
-            const container = document.getElementById('dynamic-tasks-container');
-            container.innerHTML = "";
-            if (!appConfig.tasks) return;
-            Object.keys(appConfig.tasks).forEach(key => {
-                const task = appConfig.tasks[key];
-                const isDone = userState.completedTasks && userState.completedTasks[key];
-                container.innerHTML += `
-                    <div class="stat-card" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                        <img src="${task.icon}" style="width:30px;">
-                        <div style="flex:1; text-align:left;"><b>${task.name}</b><br><small>${task.reward} TK</small></div>
-                        <button class="action-btn" onclick="claimTask('${key}')" ${isDone?'disabled':''}>${isDone?'Done':'Claim'}</button>
-                    </div>`;
+            document.querySelectorAll('.board-toggle').forEach(btn => {
+                btn.onclick = () => {
+                    document.querySelectorAll('.board-toggle').forEach(b => {
+                        b.classList.remove('active');
+                        b.style.background = "none";
+                        b.style.border = "1px solid var(--border-dark)";
+                    });
+                    btn.classList.add('active');
+                    btn.style.background = "linear-gradient(45deg, var(--primary-color), var(--secondary-color))";
+                    btn.style.border = "none";
+                    renderLeaderboard(btn.dataset.board);
+                }
             });
         };
 
-        window.claimTask = async (key) => {
-            const task = appConfig.tasks[key];
-            tg.openLink(task.url);
-            setTimeout(async () => {
-                await db.ref(`users/${tgUser.id}/completedTasks/${key}`).set(true);
-                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(task.reward));
-                userState.balance += task.reward;
-                if (!userState.completedTasks) userState.completedTasks = {};
-                userState.completedTasks[key] = true;
-                renderUI();
-                tg.showAlert("Reward Claimed!");
-            }, 5000);
+        const renderChart = async () => {
+            const chart = document.getElementById('earnings-chart');
+            const labels = document.getElementById('chart-labels');
+            chart.innerHTML = ""; labels.innerHTML = "";
+            const dates = []; for(let i=6; i>=0; i--) { const d = new Date(); d.setDate(d.getDate()-i); dates.push(d.toISOString().slice(0,10)); }
+            const snaps = await Promise.all(dates.map(d => db.ref(`userEarnings/${tgUser.id}/${d}`).once('value')));
+            const data = snaps.map(s => s.val() || 0);
+            const max = Math.max(...data, 1);
+            data.forEach((v, i) => {
+                const h = (v/max)*100;
+                chart.innerHTML += `<div class="bar" style="height:${h}%;"></div>`;
+                labels.innerHTML += `<span>${dates[i].split('-')[2]}</span>`;
+            });
         };
 
         const renderWithdrawSection = () => {
@@ -395,27 +440,26 @@
             let opts = appConfig.withdrawMethods.map(m => `<option value="${m.name}">${m.name} (Min ${m.min} TK)</option>`).join('');
             container.innerHTML = `
                 <div class="menu-card">
-                    <h3>Withdraw</h3>
-                    <select id="w-method" style="width:100%; padding:10px; margin:10px 0; border-radius:8px;">${opts}</select>
-                    <input type="text" id="w-account" placeholder="Account Number" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin-bottom:10px;">
-                    <input type="number" id="w-amount" placeholder="Amount" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin-bottom:10px;">
-                    <button class="action-btn" id="sub-withdraw" style="width:100%">Submit Request</button>
+                    <h3>Withdraw Request</h3>
+                    <select id="w-method" style="width:100%; padding:12px; border-radius:10px; margin-top:10px; background:none; color:inherit; border: 1px solid var(--border-dark);">${opts}</select>
+                    <input type="text" id="w-account" placeholder="Account Number" style="width:100%; padding:12px; border-radius:10px; margin-top:10px; background:none; color:inherit; border: 1px solid var(--border-dark);">
+                    <input type="number" id="w-amount" placeholder="Amount" style="width:100%; padding:12px; border-radius:10px; margin-top:10px; background:none; color:inherit; border: 1px solid var(--border-dark);">
+                    <button class="action-btn" id="sub-w" style="width:100%; margin-top:15px;">Submit Withdrawal</button>
                 </div>`;
-            document.getElementById('sub-withdraw').onclick = async () => {
-                const method = document.getElementById('w-method').value;
-                const acc = document.getElementById('w-account').value;
+            document.getElementById('sub-w').onclick = async () => {
+                const m = document.getElementById('w-method').value;
                 const am = parseFloat(document.getElementById('w-amount').value);
-                const min = appConfig.withdrawMethods.find(m => m.name === method).min;
+                const min = appConfig.withdrawMethods.find(x => x.name === m).min;
                 
-                if (userState.referrals < (appConfig.minimumWithdrawReferrals || 0)) return tg.showAlert(`You need ${appConfig.minimumWithdrawReferrals} referrals!`);
-                if (am < min) return tg.showAlert(`Min withdraw is ${min} TK`);
-                if (am > userState.balance) return tg.showAlert("Insufficient balance");
+                if (userState.referrals < (appConfig.minimumWithdrawReferrals || 0)) return tg.showAlert(`Min ${appConfig.minimumWithdrawReferrals} referrals required!`);
+                if (am < min) return tg.showAlert(`Min withdraw ${min} TK`);
+                if (am > userState.balance) return tg.showAlert("Insufficient Balance");
                 
                 await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(-am));
-                await db.ref('withdrawals/pending').push({ userId: tgUser.id, userName: userState.firstName, amount: am, method, account: acc, timestamp: Date.now(), status: 'pending' });
+                await db.ref('withdrawals/pending').push({ userId: tgUser.id, userName: userState.firstName, amount: am, method: m, account: document.getElementById('w-account').value, timestamp: Date.now(), status: 'pending' });
                 userState.balance -= am;
                 renderUI();
-                tg.showAlert("Withdrawal request submitted!");
+                tg.showAlert("Request Submitted!");
             };
         };
 
@@ -423,53 +467,74 @@
             const container = document.getElementById('history-list');
             const snap = await db.ref('withdrawals/pending').orderByChild('userId').equalTo(tgUser.id).once('value');
             container.innerHTML = "";
-            snap.forEach(child => {
-                const w = child.val();
-                container.innerHTML += `<div class="stat-card" style="margin-bottom:8px; display:flex; justify-content:space-between;"><span>${w.amount} TK - ${w.method}</span><span style="color:orange;">Pending</span></div>`;
+            let count = 0;
+            snap.forEach(c => {
+                count++;
+                const h = c.val();
+                container.innerHTML += `<div class="history-item"><span>${h.amount} TK (${h.method})</span><span class="status-badge" style="background:var(--pending)">${h.status}</span></div>`;
+            });
+            if(count === 0) container.innerHTML = "<p style='text-align:center; opacity:0.5;'>No history.</p>";
+        };
+
+        const renderLeaderboard = async (type) => {
+            const list = document.getElementById('leaderboard-list');
+            list.innerHTML = "<p style='text-align:center;'>Loading...</p>";
+            const field = type === 'referral' ? 'referrals' : 'totalEarned';
+            const snap = await db.ref('users').orderByChild(field).limitToLast(15).once('value');
+            const data = []; snap.forEach(c => data.push(c.val()));
+            data.reverse();
+            list.innerHTML = data.map((u, i) => `
+                <div class="leaderboard-item">
+                    <span class="rank-box">#${i+1}</span>
+                    <img src="${u.photoUrl || 'https://via.placeholder.com/35'}">
+                    <span style="flex:1; font-weight:600;">${u.firstName}</span>
+                    <span style="color:var(--primary-color); font-weight:700;">${u[field]}</span>
+                </div>`).join('');
+        };
+
+        const renderBonusTasks = () => {
+            const container = document.getElementById('dynamic-tasks-container');
+            container.innerHTML = "";
+            if (!appConfig.tasks) return;
+            Object.keys(appConfig.tasks).forEach(key => {
+                const t = appConfig.tasks[key];
+                const done = userState.completedTasks && userState.completedTasks[key];
+                container.innerHTML += `
+                    <div class="task-container">
+                        <img src="${t.icon}" class="task-icon-img">
+                        <div style="flex:1;"><h3>${t.name}</h3><p>Reward: ${t.reward} TK</p></div>
+                        <button class="action-btn" onclick="claimTask('${key}')" ${done?'disabled':''}>${done?'Claimed':'Claim'}</button>
+                    </div>`;
             });
         };
 
-        const renderEarningsChart = async () => {
-            const chart = document.getElementById('earnings-chart');
-            chart.innerHTML = "";
-            const dates = []; for(let i=6; i>=0; i--) { const d = new Date(); d.setDate(d.getDate()-i); dates.push(d.toISOString().slice(0,10)); }
-            const snaps = await Promise.all(dates.map(d => db.ref(`userEarnings/${tgUser.id}/${d}`).once('value')));
-            const data = snaps.map(s => s.val() || 0);
-            const max = Math.max(...data, 1);
-            data.forEach(v => {
-                const h = (v/max) * 100;
-                chart.innerHTML += `<div style="width:10%; background:var(--primary-color); height:${h}%; border-radius:3px 3px 0 0;"></div>`;
-            });
+        window.claimTask = async (key) => {
+            const t = appConfig.tasks[key];
+            tg.openLink(t.url);
+            setTimeout(async () => {
+                await db.ref(`users/${tgUser.id}/completedTasks/${key}`).set(true);
+                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(t.reward));
+                userState.balance += t.reward;
+                if(!userState.completedTasks) userState.completedTasks = {};
+                userState.completedTasks[key] = true;
+                renderUI();
+                tg.showAlert("Bonus Claimed!");
+            }, 5000);
         };
 
         const renderDynamicLinks = () => {
             const container = document.getElementById('dynamic-links-container');
             container.innerHTML = "";
-            if (!appConfig.links) return;
+            if(!appConfig.links) return;
             Object.keys(appConfig.links).forEach(key => {
                 const l = appConfig.links[key];
-                container.innerHTML += `<div class="stat-card" style="display:flex; align-items:center; gap:10px; margin-top:10px;">
-                    <img src="${l.icon}" style="width:25px;">
-                    <span style="flex:1; text-align:left;">${l.name}</span>
-                    <button class="action-btn" style="padding:5px 15px;" onclick="tg.openLink('${l.url}')">Visit</button>
-                </div>`;
+                container.innerHTML += `
+                    <div class="task-container" style="padding: 12px;">
+                        <img src="${l.icon}" style="width:25px; height:25px;">
+                        <span style="flex:1; font-weight:600; font-size:0.9rem;">${l.name}</span>
+                        <button class="action-btn" style="padding: 5px 15px;" onclick="tg.openLink('${l.url}')">Visit</button>
+                    </div>`;
             });
-        };
-
-        const renderLeaderboard = async (type) => {
-            const list = document.getElementById('leaderboard-list');
-            list.innerHTML = "Loading...";
-            const field = type === 'referral' ? 'referrals' : 'totalEarned';
-            const snap = await db.ref('users').orderByChild(field).limitToLast(10).once('value');
-            const users = []; snap.forEach(c => users.push(c.val()));
-            users.reverse();
-            list.innerHTML = users.map((u, i) => `
-                <div class="stat-card" style="display:flex; align-items:center; margin-bottom:8px;">
-                    <span style="width:30px; font-weight:bold;">#${i+1}</span>
-                    <img src="${u.photoUrl || 'https://via.placeholder.com/30'}" style="width:30px; border-radius:50%; margin-right:10px;">
-                    <span style="flex:1; text-align:left;">${u.firstName}</span>
-                    <span style="font-weight:bold; color:var(--primary-color);">${u[field]}</span>
-                </div>`).join('');
         };
 
         init();
