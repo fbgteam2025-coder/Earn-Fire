@@ -20,102 +20,86 @@
         body { font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; -webkit-font-smoothing: antialiased; }
         body.light-theme { background-color: var(--background-light); color: var(--text-primary-light); }
         body.dark-theme { background-color: var(--background-dark); color: var(--text-primary-dark); }
-        #app { max-width: 500px; margin: 0 auto; padding-bottom: 80px; }
+        #app { max-width: 500px; margin: 0 auto; padding-bottom: 90px; }
         .page { display: none; padding: 15px; }
         .page.active { display: block; animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         
         /* Premium Small Header */
         .profile-header {
-            padding: 12px 20px; border-bottom: 1px solid;
-            display: flex; flex-direction: row; align-items: center; justify-content: space-between;
-            position: sticky; top: 0; z-index: 1001;
-            backdrop-filter: blur(10px);
+            padding: 10px 15px; border-bottom: 1px solid;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 1001; backdrop-filter: blur(10px);
         }
         .light-theme .profile-header { background-color: rgba(255,255,255,0.9); border-bottom-color: var(--border-light); }
         .dark-theme .profile-header { background-color: rgba(40, 55, 71, 0.9); border-bottom-color: var(--border-dark); }
-        
-        .header-user-info { display: flex; align-items: center; gap: 12px; }
-        #user-photo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary-color); object-fit: cover; }
-        #user-name { font-size: 1rem; font-weight: 700; max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .header-balance-card { text-align: right; }
-        .header-balance-card p { font-size: 0.75rem; font-weight: 500; color: var(--text-secondary-dark); }
+        .header-user { display: flex; align-items: center; gap: 10px; }
+        #user-photo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary-color); object-fit: cover; }
+        #user-name { font-size: 0.9rem; font-weight: 700; }
+        .header-balance { text-align: right; }
+        .header-balance span { font-size: 0.7rem; opacity: 0.7; display: block; }
         #user-balance { font-size: 1rem; font-weight: 700; color: var(--primary-color); }
 
+        /* General UI Elements */
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
         .stat-card { padding: 12px; border-radius: 12px; text-align: center; border: 1px solid; }
         .light-theme .stat-card { background-color: var(--surface-light); border-color: var(--border-light); }
         .dark-theme .stat-card { background-color: var(--surface-dark); border-color: var(--border-dark); }
-        .stat-card h3 { font-size: 0.75rem; font-weight: 500; margin-bottom: 5px; text-transform: uppercase; }
+        .stat-card h3 { font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; opacity: 0.7; }
         .stat-card p { font-size: 1.1rem; font-weight: 600; color: var(--primary-color); }
-        
-        .chart-container, .earning-wallet-card, .menu-card { padding: 20px; border-radius: 12px; margin-top: 15px; border: 1px solid; }
+
+        .chart-container, .earning-wallet-card, .menu-card { padding: 15px; border-radius: 15px; margin-top: 15px; border: 1px solid; }
         .light-theme .chart-container, .light-theme .earning-wallet-card, .light-theme .menu-card { background-color: var(--surface-light); border-color: var(--border-light); }
         .dark-theme .chart-container, .dark-theme .earning-wallet-card, .dark-theme .menu-card { background-color: var(--surface-dark); border-color: var(--border-dark); }
+
+        .action-btn { padding: 12px; border-radius: 10px; border: none; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Friend Page Styles */
+        .invite-section { display: flex; gap: 10px; margin-top: 15px; }
+        .invite-btn { flex: 1; background: #0088cc; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .copy-btn { width: 48px; height: 48px; background: var(--border-dark); color: white; border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         
-        .chart { display: flex; justify-content: space-around; align-items: flex-end; height: 120px; border-left: 1px solid; border-bottom: 1px solid; padding-top: 10px; }
-        .light-theme .chart { border-color: var(--border-light); } .dark-theme .chart { border-color: var(--border-dark); }
-        .bar { width: 10%; background: linear-gradient(to top, var(--primary-color), var(--secondary-color)); border-radius: 4px 4px 0 0; position: relative; cursor: pointer; }
-        .chart-labels { display: flex; justify-content: space-around; font-size: 0.7rem; margin-top: 5px; }
+        .friends-list { list-style: none; margin-top: 15px; }
+        .friend-item { display: flex; align-items: center; padding: 10px; margin-bottom: 10px; border-radius: 12px; border: 1px solid; }
+        .light-theme .friend-item { background: #f9f9f9; border-color: var(--border-light); }
+        .dark-theme .friend-item { background: #2c3e50; border-color: var(--border-dark); }
+        .friend-avatar { width: 35px; height: 35px; border-radius: 50%; margin-right: 12px; border: 1px solid var(--primary-color); }
+        .friend-info { flex: 1; }
+        .friend-name { font-size: 0.85rem; font-weight: 600; }
+        .friend-reward { font-size: 0.75rem; color: var(--success); font-weight: 700; }
 
-        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-radius: 10px; margin-bottom: 8px; font-size: 0.9rem; }
-        .light-theme .history-item { background-color: var(--surface-light); border: 1px solid var(--border-light); }
-        .dark-theme .history-item { background-color: var(--surface-dark); border: 1px solid var(--border-dark); }
-        .history-status { padding: 3px 8px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; color: white; }
-
-        .action-btn { padding: 12px 20px; font-size: 0.95rem; font-weight: 600; color: #fff; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .action-btn:disabled { background: #808B96; cursor: not-allowed; opacity: 0.7; }
-        
-        .menu-item-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 1px solid; background: none; font-family: var(--font-family); font-size: 1rem; cursor: pointer; color: inherit; }
-        .light-theme .menu-item-btn { border-color: var(--border-light); background: #f9f9f9; }
-        .dark-theme .menu-item-btn { border-color: var(--border-dark); background: #2c3e50; }
-
+        /* Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 500px; margin: 0 auto; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid; z-index: 1000; }
         .light-theme .bottom-nav { background-color: var(--surface-light); border-top-color: var(--border-light); }
         .dark-theme .bottom-nav { background-color: var(--surface-dark); border-top-color: var(--border-dark); }
-        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.7rem; transition: color 0.2s; flex-grow: 1; opacity: 0.7; }
-        .nav-btn i { font-size: 1.3rem; margin-bottom: 4px; } 
+        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.65rem; color: inherit; opacity: 0.6; flex: 1; }
+        .nav-btn i { font-size: 1.2rem; margin-bottom: 4px; }
         .nav-btn.active { color: var(--primary-color); opacity: 1; }
-        
-        .task-container { padding: 15px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; border: 1px solid; }
-        .light-theme .task-container { background-color: var(--surface-light); border-color: var(--border-light); }
-        .dark-theme .task-container { background-color: var(--surface-dark); border-color: var(--border-dark); }
-        .task-icon-img { width: 40px; height: 40px; border-radius: 8px; }
 
-        .leaderboard-list { list-style: none; margin-top: 15px; }
-        .leaderboard-item { display: flex; align-items: center; padding: 12px; margin-bottom: 8px; border-radius: 10px; }
-        .light-theme .leaderboard-item { background-color: var(--surface-light); border: 1px solid var(--border-light); }
-        .dark-theme .leaderboard-item { background-color: var(--surface-dark); border: 1px solid var(--border-dark); }
-        .rank { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); width: 35px; }
-        .leaderboard-name { font-weight: 600; flex-grow: 1; }
-
+        /* Loader & Popups */
         #app-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .light-theme #app-loader { background-color: var(--background-light); } .dark-theme #app-loader { background-color: var(--background-dark); }
-        .spinner { width: 45px; height: 45px; border-radius: 50%; border: 4px solid; border-color: var(--primary-color) transparent; animation: spin 1s linear infinite; }
+        .light-theme #app-loader { background: var(--background-light); } .dark-theme #app-loader { background: var(--background-dark); }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(0,0,0,0.1); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 10000; padding: 20px; }
-        .popup-content { padding: 25px; border-radius: 20px; text-align: center; width: 100%; max-width: 350px; }
-        .light-theme .popup-content { background-color: var(--surface-light); } .dark-theme .popup-content { background-color: var(--surface-dark); }
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 10000; }
+        .popup-content { padding: 25px; border-radius: 20px; text-align: center; width: 80%; max-width: 320px; }
+        .light-theme .popup-content { background: white; color: #333; } .dark-theme .popup-content { background: var(--surface-dark); color: white; }
     </style>
 </head>
 <body class="light-theme">
-    <div id="app-loader"><div class="spinner"></div><p id="loading-progress" style="margin-top:10px; font-weight:600;">0%</p></div>
-    
+    <div id="app-loader"><div class="spinner"></div><p id="loading-progress" style="margin-top:10px;">0%</p></div>
     <div id="popup" class="popup-overlay"><div class="popup-content"><div id="popup-body"></div></div></div>
 
     <div id="app" style="display: none;">
         <header class="profile-header">
-            <div class="header-user-info">
-                <img id="user-photo" src="https://via.placeholder.com/80" alt="User">
-                <div class="header-text">
-                    <h1 id="user-name">Loading...</h1>
-                    <p style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8;">Member</p>
-                </div>
+            <div class="header-user">
+                <img id="user-photo" src="https://via.placeholder.com/80">
+                <h1 id="user-name">Loading...</h1>
             </div>
-            <div class="header-balance-card">
-                <p>Balance</p>
-                <div id="user-balance">0.00</div>
+            <div class="header-balance">
+                <span>Main Balance</span>
+                <div id="user-balance">0.00 TK</div>
             </div>
         </header>
 
@@ -123,85 +107,73 @@
             <!-- Home Page -->
             <div id="home-page" class="page active">
                 <div class="stats-grid">
-                    <div class="stat-card"><h3>Today's Ads</h3><p id="daily-ads-watched">0 / 0</p></div>
-                    <div class="stat-card"><h3>Total Ads</h3><p id="total-ads-watched">0</p></div>
+                    <div class="stat-card"><h3>Daily Ads</h3><p id="daily-ads">0 / 0</p></div>
+                    <div class="stat-card"><h3>Total Earnings</h3><p id="total-earned">0.00</p></div>
                 </div>
-                <div id="earnings-graph-container" class="chart-container">
-                    <h3 style="font-size: 0.9rem; margin-bottom:10px;">7 Days Revenue</h3>
-                    <div id="earnings-chart" class="chart"></div><div id="earnings-chart-labels" class="chart-labels"></div>
+                <div class="chart-container">
+                    <h3 style="font-size: 0.8rem; margin-bottom:10px;">Last 7 Days (TK)</h3>
+                    <div id="earnings-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 100px;"></div>
                 </div>
-                <div id="dynamic-links-container" style="margin-top: 15px;"></div>
+                <div id="dynamic-links-container"></div>
             </div>
 
             <!-- Tasks Page -->
             <div id="tasks-page" class="page">
                 <div class="earning-wallet-card">
-                    <h3 style="font-size: 0.9rem;">Earning Wallet</h3>
-                    <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary-color); margin: 5px 0;"><span id="earning-wallet-balance">0.00</span> TK</p>
-                    <small style="opacity:0.7;">Min 100 TK to move to main balance.</small>
-                    <button id="move-to-balance-btn" class="action-btn" style="width:100%; margin-top: 15px;" disabled>Transfer to Main</button>
+                    <h3>Earning Wallet</h3>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--primary-color);" id="ew-balance">0.00</p>
+                    <button id="move-btn" class="action-btn" style="width: 100%;" disabled>Move to Main Balance</button>
                 </div>
-                <div id="ad-task-container" style="margin-top:20px;"></div>
-                <h2 style="font-size: 1.1rem; margin: 20px 0 10px;">Extra Bonuses</h2>
+                <div id="ad-task-container" style="margin-top: 15px;"></div>
+                <h3 style="margin-top:20px;">Bonus Tasks</h3>
                 <div id="dynamic-tasks-container"></div>
             </div>
 
-            <!-- Refer Page (New Slot) -->
-            <div id="refer-page" class="page">
-                <h2 style="margin-bottom: 15px;">Refer & Earn</h2>
-                <div id="referral-page-content"></div>
-                <div class="menu-card" style="margin-top:20px; text-align: center;">
-                    <p style="font-size: 0.9rem; margin-bottom:10px;">Your Total Referrals</p>
-                    <p id="referral-count-big" style="font-size: 2.5rem; font-weight: 700; color: var(--primary-color);">0</p>
+            <!-- Friend Page -->
+            <div id="friend-page" class="page">
+                <h2>Invite Friends</h2>
+                <div class="menu-card">
+                    <p style="font-size: 0.85rem; opacity: 0.8;">Earn <b><span id="ref-bonus-text">0</span> TK</b> for every friend who joins!</p>
+                    <div class="invite-section">
+                        <button class="invite-btn" id="invite-forward-btn"><i class="fab fa-telegram-plane"></i> Invite your friend</button>
+                        <button class="copy-btn" id="copy-link-btn"><i class="fas fa-copy"></i></button>
+                    </div>
                 </div>
+                <h3 style="margin-top: 25px;">My Friend (<span id="friend-count">0</span>)</h3>
+                <ul class="friends-list" id="friends-list-ul"></ul>
             </div>
 
             <!-- Profile Page -->
             <div id="profile-page" class="page">
-                <h2 style="margin-bottom: 15px;">Account Settings</h2>
-                
-                <div class="menu-card" style="padding: 10px; margin-bottom: 20px;">
-                    <button class="menu-item-btn" id="view-leaderboard-btn">
-                        <span><i class="fas fa-trophy" style="color:var(--secondary-color); margin-right:10px;"></i> Leaderboard</span>
-                        <i class="fas fa-chevron-right" style="font-size: 0.8rem; opacity:0.5;"></i>
-                    </button>
-                </div>
-
+                <button class="menu-item-btn action-btn" id="go-leaderboard" style="width: 100%; margin-bottom: 20px; background: var(--surface-dark);"><i class="fas fa-trophy"></i> View Leaderboard</button>
                 <div id="withdraw-section"></div>
-                
-                <div id="withdrawal-history-section" style="margin-top: 25px;">
-                    <h3 style="font-size: 1rem; margin-bottom: 10px;">Withdrawal History</h3>
-                    <div id="withdrawal-history-list"></div>
-                </div>
+                <h3 style="margin-top: 20px;">Withdrawal History</h3>
+                <div id="history-list"></div>
             </div>
 
-            <!-- Hidden Leaderboard Page (Accessible from Profile) -->
+            <!-- Leaderboard Page (Sub-page) -->
             <div id="leaderboard-page" class="page">
-                <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
-                    <button id="back-to-profile" style="background:none; border:none; color:inherit; font-size:1.2rem; cursor:pointer;"><i class="fas fa-arrow-left"></i></button>
-                    <h2 style="margin:0;">Leaderboard</h2>
+                <button id="back-to-profile" style="background:none; border:none; color:inherit; margin-bottom:15px; cursor:pointer;"><i class="fas fa-arrow-left"></i> Back</button>
+                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">
+                    <button class="toggle-btn active" data-board="referral">Top Referrers</button>
+                    <button class="toggle-btn" data-board="earning">Top Earners</button>
                 </div>
-                <div class="leaderboard-toggle" style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">
-                    <button class="toggle-btn active" data-board="referral" style="padding:8px 15px; border-radius:20px; border:1px solid var(--primary-color); background:none; cursor:pointer;">Top Referrers</button>
-                    <button class="toggle-btn" data-board="earning" style="padding:8px 15px; border-radius:20px; border:1px solid var(--border-dark); background:none; cursor:pointer;">Top Earners</button>
-                </div>
-                <div id="referral-board"><ul class="leaderboard-list" id="referral-leaderboard-list"></ul></div>
-                <div id="earning-board" style="display: none;"><ul class="leaderboard-list" id="earning-leaderboard-list"></ul></div>
+                <div id="leaderboard-list"></div>
             </div>
         </main>
 
         <nav class="bottom-nav">
             <button class="nav-btn active" data-page="home-page"><i class="fas fa-home"></i><span>Home</span></button>
             <button class="nav-btn" data-page="tasks-page"><i class="fas fa-tasks"></i><span>Tasks</span></button>
-            <button class="nav-btn" data-page="refer-page"><i class="fas fa-user-plus"></i><span>Refer</span></button>
-            <button class="nav-btn" data-page="profile-page"><i class="fas fa-wallet"></i><span>Profile</span></button>
+            <button class="nav-btn" data-page="friend-page"><i class="fas fa-users"></i><span>Friend</span></button>
+            <button class="nav-btn" data-page="profile-page"><i class="fas fa-user"></i><span>Profile</span></button>
         </nav>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const tg = window.Telegram.WebApp;
@@ -215,77 +187,40 @@
             appId: "1:288559349702:web:9232a6bca6ec1ade4a3cc7"
         };
         
-        let appConfig = {}; let userState = {}; let tgUser = {}; let earningWalletBalance = 0;
-        let leaderboardData = { referral: [], earning: [] };
-        let userTransactions = [];
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        let appConfig = {}; let userState = {}; let tgUser = tg.initDataUnsafe.user || {id: 0, first_name: "User"};
+        let earningWallet = parseFloat(localStorage.getItem('ew_' + tgUser.id) || 0);
 
-        const popup = document.getElementById('popup');
-        const popupBody = document.getElementById('popup-body');
-        const loadingProgress = document.getElementById('loading-progress');
-
-        const showPopup = (content) => { popupBody.innerHTML = content; popup.style.display = 'flex'; };
-        const closePopup = () => { popup.style.display = 'none'; };
-        const updateProgress = (percentage) => { loadingProgress.textContent = `${percentage}%`; };
-
-        const loadAdSdk = (zoneId) => {
-            if (!zoneId) return;
-            const script = document.createElement('script');
-            script.src = `//libtl.com/sdk.js`;
-            script.setAttribute('data-zone', zoneId);
-            script.setAttribute('data-sdk', `show_${zoneId}`);
-            script.async = true;
-            document.body.appendChild(script);
-        };
-
-        const initApp = async () => {
-            tg.ready(); tg.expand();
+        const init = async () => {
             document.body.className = `${tg.colorScheme}-theme`;
-            tgUser = tg.initDataUnsafe.user || { id: 12345, first_name: "User", photo_url: "" };
+            tg.expand();
 
             try {
-                updateProgress(20); firebase.initializeApp(firebaseConfig); const db = firebase.database();
-                updateProgress(40);
-                const configSnapshot = await db.ref('config').once('value');
-                appConfig = configSnapshot.val() || {};
+                const confSnap = await db.ref('config').once('value');
+                appConfig = confSnap.val() || {};
                 
-                await loadUserData(db);
-                updateProgress(70);
-
-                const [refSnap, earnSnap] = await Promise.all([
-                    db.ref('users').orderByChild('referrals').limitToLast(15).once('value'),
-                    db.ref('users').orderByChild('totalEarned').limitToLast(15).once('value'),
-                    loadTransactionHistory(db)
-                ]);
-
-                refSnap.forEach(child => { leaderboardData.referral.push(child.val()); });
-                earnSnap.forEach(child => { leaderboardData.earning.push(child.val()); });
-                leaderboardData.referral.reverse(); leaderboardData.earning.reverse();
-
-                loadAdSdk(appConfig.adZoneId);
-                earningWalletBalance = parseFloat(localStorage.getItem(`earningWallet_${tgUser.id}`) || '0');
+                await loadUser();
+                renderUI();
+                loadAdSdk();
+                setupNav();
                 
-                renderUI(); setupNavigation(); setupEventListeners();
-                updateProgress(100);
-
-                setTimeout(() => {
-                    document.getElementById('app-loader').style.display = 'none';
-                    document.getElementById('app').style.display = 'block';
-                }, 500);
-            } catch (error) { console.error(error); }
+                document.getElementById('app-loader').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+            } catch (e) { console.error(e); }
         };
 
-        const loadUserData = async (db) => {
+        const loadUser = async () => {
             const userRef = db.ref(`users/${tgUser.id}`);
-            const snapshot = await userRef.once('value');
-            let userData = snapshot.val();
-            
-            if (!userData) {
+            const snap = await userRef.once('value');
+            if (snap.exists()) {
+                userState = snap.val();
+            } else {
                 const startParam = tg.initDataUnsafe.start_param;
-                const referralId = (startParam && !isNaN(startParam)) ? startParam : null;
-                userData = { id: tgUser.id, firstName: tgUser.first_name || '', photoUrl: tgUser.photo_url || '', balance: 0, referrals: 0, referredBy: referralId, totalEarned: 0, lifetimeAdCount: 0, lastAdWatchDate: new Date().toISOString().slice(0, 10), dailyAdCount: 0, completedTasks: {} };
-                await userRef.set(userData);
-                if (referralId && referralId != tgUser.id) {
-                    await db.ref(`users/${referralId}`).transaction(curr => {
+                userState = { id: tgUser.id, firstName: tgUser.first_name, balance: 0, referrals: 0, referredBy: startParam || null, totalEarned: 0, dailyAdCount: 0, lifetimeAdCount: 0, lastAdDate: new Date().toISOString().slice(0, 10), completedTasks: {} };
+                await userRef.set(userState);
+                if (startParam && startParam != tgUser.id) {
+                    await db.ref(`users/${startParam}`).transaction(curr => {
                         if (curr) {
                             curr.balance = (curr.balance || 0) + (appConfig.referralBonus || 0);
                             curr.referrals = (curr.referrals || 0) + 1;
@@ -294,224 +229,250 @@
                     });
                 }
             }
-            userState = userData;
-        };
-
-        const loadTransactionHistory = async (db) => {
-            userTransactions = [];
-            const snapshots = await Promise.all(['pending', 'completed', 'rejected'].map(s => db.ref(`withdrawals/${s}`).orderByChild('userId').equalTo(tgUser.id).once('value')));
-            snapshots.forEach(snap => snap.forEach(c => userTransactions.push(c.val())));
-            userTransactions.sort((a, b) => b.timestamp - a.timestamp);
         };
 
         const renderUI = () => {
-            document.getElementById('user-photo').src = userState.photoUrl || 'https://via.placeholder.com/80';
+            document.getElementById('user-photo').src = tgUser.photo_url || 'https://via.placeholder.com/80';
             document.getElementById('user-name').textContent = userState.firstName;
-            document.getElementById('user-balance').textContent = (userState.balance || 0).toFixed(2) + " TK";
-            document.getElementById('daily-ads-watched').textContent = `${userState.dailyAdCount || 0} / ${appConfig.dailyAdLimit || 0}`;
-            document.getElementById('total-ads-watched').textContent = userState.lifetimeAdCount || 0;
-            document.getElementById('earning-wallet-balance').textContent = earningWalletBalance.toFixed(2);
-            document.getElementById('referral-count-big').textContent = userState.referrals || 0;
-            document.getElementById('move-to-balance-btn').disabled = earningWalletBalance < 100;
-            
-            renderAdTask(); renderDynamicTasks(); renderReferralSection(); renderWithdrawSection(); renderEarningsGraph(); renderDynamicLinks();
+            document.getElementById('user-balance').textContent = userState.balance.toFixed(2) + " TK";
+            document.getElementById('daily-ads').textContent = `${userState.dailyAdCount} / ${appConfig.dailyAdLimit}`;
+            document.getElementById('total-earned').textContent = userState.totalEarned.toFixed(2);
+            document.getElementById('ew-balance').textContent = earningWallet.toFixed(2);
+            document.getElementById('move-btn').disabled = earningWallet < 100;
+            document.getElementById('ref-bonus-text').textContent = appConfig.referralBonus;
+            document.getElementById('friend-count').textContent = userState.referrals || 0;
+
+            renderAdSection();
+            renderBonusTasks();
+            renderWithdrawSection();
+            renderHistory();
+            renderEarningsChart();
+            renderDynamicLinks();
         };
 
-        const renderAdTask = () => {
+        const loadAdSdk = () => {
+            if (!appConfig.adZoneId) return;
+            const s = document.createElement('script');
+            s.src = "//libtl.com/sdk.js";
+            s.setAttribute('data-zone', appConfig.adZoneId);
+            s.setAttribute('data-sdk', `show_${appConfig.adZoneId}`);
+            document.body.appendChild(s);
+        };
+
+        const renderAdSection = () => {
             const container = document.getElementById('ad-task-container');
             const now = Date.now();
             if (userState.breakUntil && now < userState.breakUntil) {
-                container.innerHTML = `<div class="task-container"><div class="task-info"><h3>Break Time</h3><p>Wait ${Math.ceil((userState.breakUntil - now)/60000)} mins</p></div><button class="action-btn" disabled>Waiting</button></div>`;
+                const min = Math.ceil((userState.breakUntil - now)/60000);
+                container.innerHTML = `<div class="stat-card">Break Time: ${min} min left</div>`;
             } else if (userState.dailyAdCount >= appConfig.dailyAdLimit) {
-                container.innerHTML = `<div class="task-container"><div class="task-info"><h3>Limit Reached</h3><p>Come back tomorrow</p></div><button class="action-btn" disabled>Done</button></div>`;
+                container.innerHTML = `<div class="stat-card">Daily Limit Reached</div>`;
             } else {
-                container.innerHTML = `<div class="task-container"><div class="task-info"><h3>Watch Video Ad</h3><p>Earn ${appConfig.adValue} TK</p></div><button id="watch-ad-btn" class="action-btn"><i class="fas fa-play"></i> Watch</button></div>`;
-                document.getElementById('watch-ad-btn').onclick = handleWatchAd;
+                container.innerHTML = `<button class="action-btn" id="watch-btn" style="width:100%"><i class="fas fa-play"></i> Watch Ad (${appConfig.adValue} TK)</button>`;
+                document.getElementById('watch-btn').onclick = handleWatchAd;
             }
         };
 
         const handleWatchAd = async () => {
-            const adFunc = window['show_' + appConfig.adZoneId];
-            if (typeof adFunc !== 'function') return tg.showAlert("Ad SDK loading...");
-            showPopup(`<h3>Loading Ad...</h3>`);
+            const showAd = window[`show_${appConfig.adZoneId}`];
+            if (typeof showAd !== 'function') return tg.showAlert("Ad not ready...");
+            
+            document.getElementById('popup-body').innerHTML = `<h3>Loading Ad...</h3>`;
+            document.getElementById('popup').style.display = 'flex';
+            
             try {
-                await adFunc();
-                closePopup();
-                earningWalletBalance += appConfig.adValue;
-                localStorage.setItem(`earningWallet_${tgUser.id}`, earningWalletBalance.toString());
-                const db = firebase.database();
-                userState.dailyAdCount++; userState.lifetimeAdCount++;
-                const updates = { dailyAdCount: userState.dailyAdCount, lifetimeAdCount: userState.lifetimeAdCount };
+                await showAd();
+                document.getElementById('popup').style.display = 'none';
+                earningWallet += appConfig.adValue;
+                localStorage.setItem('ew_' + tgUser.id, earningWallet);
+                userState.dailyAdCount++;
+                userState.totalEarned += appConfig.adValue;
+                
+                const updates = { dailyAdCount: userState.dailyAdCount, totalEarned: userState.totalEarned };
                 if (userState.dailyAdCount % appConfig.adsPerBreak === 0) updates.breakUntil = Date.now() + (appConfig.breakDuration * 60000);
+                
                 await db.ref(`users/${tgUser.id}`).update(updates);
-                tg.showAlert("Success! Reward added to Earning Wallet.");
+                await db.ref(`userEarnings/${tgUser.id}/${new Date().toISOString().slice(0,10)}`).set(firebase.database.ServerValue.increment(appConfig.adValue));
+                
                 renderUI();
-            } catch (e) { closePopup(); }
+                tg.showAlert("Reward added to Earning Wallet!");
+            } catch (e) { document.getElementById('popup').style.display = 'none'; }
         };
 
-        const renderReferralSection = () => {
-            const refLink = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
-            document.getElementById('referral-page-content').innerHTML = `
-                <div class="task-container" style="flex-direction:column; text-align:center;">
-                    <p style="margin-bottom:10px;">Share your link and get <b>${appConfig.referralBonus} TK</b> per friend!</p>
-                    <input type="text" value="${refLink}" readonly style="width:100%; padding:10px; border-radius:8px; border:1px dashed var(--primary-color); text-align:center; margin-bottom:10px; background:none; color:inherit;">
-                    <button class="action-btn" id="copy-link-btn" style="width:100%"><i class="fas fa-copy"></i> Copy Referral Link</button>
-                </div>`;
-            document.getElementById('copy-link-btn').onclick = () => {
-                navigator.clipboard.writeText(refLink);
-                tg.showAlert("Link Copied!");
-            };
+        const loadFriendsList = async () => {
+            const list = document.getElementById('friends-list-ul');
+            list.innerHTML = "Loading...";
+            const snap = await db.ref('users').orderByChild('referredBy').equalTo(tgUser.id.toString()).once('value');
+            list.innerHTML = "";
+            snap.forEach(child => {
+                const friend = child.val();
+                list.innerHTML += `
+                    <li class="friend-item">
+                        <img src="${friend.photoUrl || 'https://via.placeholder.com/40'}" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">${friend.firstName}</div>
+                            <div class="friend-reward">Income: +${appConfig.referralBonus} TK</div>
+                        </div>
+                    </li>`;
+            });
+            if (!list.innerHTML) list.innerHTML = "<p style='text-align:center; opacity:0.5;'>No friends invited yet.</p>";
         };
 
-        const setupNavigation = () => {
+        const setupNav = () => {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.onclick = () => {
-                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                    document.querySelectorAll('.nav-btn, .page').forEach(el => el.classList.remove('active'));
                     btn.classList.add('active');
                     document.getElementById(btn.dataset.page).classList.add('active');
+                    if (btn.dataset.page === 'friend-page') loadFriendsList();
                 };
             });
-        };
 
-        const setupEventListeners = () => {
-            document.getElementById('view-leaderboard-btn').onclick = () => {
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('invite-forward-btn').onclick = () => {
+                const link = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
+                const text = encodeURIComponent("Orange 🍊 App এ জয়েন করে অ্যাড দেখে ইনকাম করুন!");
+                tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=${text}`);
+            };
+
+            document.getElementById('copy-link-btn').onclick = () => {
+                const link = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
+                navigator.clipboard.writeText(link);
+                tg.showAlert("Link copied!");
+            };
+
+            document.getElementById('move-btn').onclick = async () => {
+                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(earningWallet));
+                userState.balance += earningWallet;
+                earningWallet = 0;
+                localStorage.setItem('ew_' + tgUser.id, 0);
+                renderUI();
+                tg.showAlert("Balance transferred!");
+            };
+
+            document.getElementById('go-leaderboard').onclick = () => {
+                document.getElementById('profile-page').classList.remove('active');
                 document.getElementById('leaderboard-page').classList.add('active');
-                renderLeaderboard();
+                renderLeaderboard('referral');
             };
             document.getElementById('back-to-profile').onclick = () => {
                 document.getElementById('leaderboard-page').classList.remove('active');
                 document.getElementById('profile-page').classList.add('active');
             };
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.onclick = () => {
-                    document.querySelectorAll('.toggle-btn').forEach(b => {
-                        b.classList.remove('active');
-                        b.style.borderColor = 'var(--border-dark)';
-                    });
-                    btn.classList.add('active');
-                    btn.style.borderColor = 'var(--primary-color)';
-                    renderLeaderboard();
-                };
-            });
-            document.getElementById('move-to-balance-btn').onclick = async () => {
-                const db = firebase.database();
-                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(earningWalletBalance));
-                userState.balance += earningWalletBalance;
-                earningWalletBalance = 0; localStorage.setItem(`earningWallet_${tgUser.id}`, '0');
-                renderUI(); tg.showAlert("Transferred to Main Balance!");
-            };
         };
 
-        const renderLeaderboard = () => {
-            const mode = document.querySelector('.toggle-btn.active').dataset.board;
-            const list = document.getElementById(mode + '-leaderboard-list');
-            document.getElementById('referral-board').style.display = mode === 'referral' ? 'block' : 'none';
-            document.getElementById('earning-board').style.display = mode === 'earning' ? 'block' : 'none';
-            list.innerHTML = leaderboardData[mode].map((u, i) => `
-                <li class="leaderboard-item">
-                    <span class="rank">#${i+1}</span>
-                    <img src="${u.photoUrl || 'https://via.placeholder.com/40'}" style="width:35px; height:35px; border-radius:50%; margin-right:10px;">
-                    <span class="leaderboard-name">${u.firstName}</span>
-                    <span style="font-weight:700;">${mode === 'referral' ? u.referrals : u.totalEarned.toFixed(2)}</span>
-                </li>`).join('');
+        const renderBonusTasks = () => {
+            const container = document.getElementById('dynamic-tasks-container');
+            container.innerHTML = "";
+            if (!appConfig.tasks) return;
+            Object.keys(appConfig.tasks).forEach(key => {
+                const task = appConfig.tasks[key];
+                const isDone = userState.completedTasks && userState.completedTasks[key];
+                container.innerHTML += `
+                    <div class="stat-card" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <img src="${task.icon}" style="width:30px;">
+                        <div style="flex:1; text-align:left;"><b>${task.name}</b><br><small>${task.reward} TK</small></div>
+                        <button class="action-btn" onclick="claimTask('${key}')" ${isDone?'disabled':''}>${isDone?'Done':'Claim'}</button>
+                    </div>`;
+            });
+        };
+
+        window.claimTask = async (key) => {
+            const task = appConfig.tasks[key];
+            tg.openLink(task.url);
+            setTimeout(async () => {
+                await db.ref(`users/${tgUser.id}/completedTasks/${key}`).set(true);
+                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(task.reward));
+                userState.balance += task.reward;
+                if (!userState.completedTasks) userState.completedTasks = {};
+                userState.completedTasks[key] = true;
+                renderUI();
+                tg.showAlert("Reward Claimed!");
+            }, 5000);
         };
 
         const renderWithdrawSection = () => {
             const container = document.getElementById('withdraw-section');
-            let options = (appConfig.withdrawMethods || []).map(m => `<option value="${m.name}">${m.name} (Min ${m.min})</option>`).join('');
+            let opts = appConfig.withdrawMethods.map(m => `<option value="${m.name}">${m.name} (Min ${m.min} TK)</option>`).join('');
             container.innerHTML = `
-                <form id="withdraw-form" class="menu-card" style="display:flex; flex-direction:column; gap:12px;">
-                    <h3 style="font-size:0.9rem;">Request Withdrawal</h3>
-                    <select id="w-method" style="padding:10px; border-radius:8px; border:1px solid var(--border-dark); background:none; color:inherit;">${options}</select>
-                    <input type="text" id="w-account" placeholder="Account Number" required style="padding:10px; border-radius:8px; border:1px solid var(--border-dark); background:none; color:inherit;">
-                    <input type="number" id="w-amount" placeholder="Amount" required style="padding:10px; border-radius:8px; border:1px solid var(--border-dark); background:none; color:inherit;">
-                    <button type="submit" class="action-btn">Submit Request</button>
-                </form>`;
-            
-            document.getElementById('withdraw-form').onsubmit = async (e) => {
-                e.preventDefault();
-                const amount = parseFloat(document.getElementById('w-amount').value);
+                <div class="menu-card">
+                    <h3>Withdraw</h3>
+                    <select id="w-method" style="width:100%; padding:10px; margin:10px 0; border-radius:8px;">${opts}</select>
+                    <input type="text" id="w-account" placeholder="Account Number" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin-bottom:10px;">
+                    <input type="number" id="w-amount" placeholder="Amount" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; margin-bottom:10px;">
+                    <button class="action-btn" id="sub-withdraw" style="width:100%">Submit Request</button>
+                </div>`;
+            document.getElementById('sub-withdraw').onclick = async () => {
                 const method = document.getElementById('w-method').value;
+                const acc = document.getElementById('w-account').value;
+                const am = parseFloat(document.getElementById('w-amount').value);
                 const min = appConfig.withdrawMethods.find(m => m.name === method).min;
                 
-                if (userState.referrals < (appConfig.minimumWithdrawReferrals || 0)) return tg.showAlert(`Min ${appConfig.minimumWithdrawReferrals} referrals required!`);
-                if (amount < min) return tg.showAlert(`Min withdraw ${min} TK`);
-                if (amount > userState.balance) return tg.showAlert("Insufficient balance!");
-
-                const db = firebase.database();
-                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(-amount));
-                await db.ref('withdrawals/pending').push({
-                    userId: tgUser.id, userName: userState.firstName, amount, method, account: document.getElementById('w-account').value, timestamp: Date.now(), status: 'pending'
-                });
-                userState.balance -= amount;
-                renderUI(); tg.showAlert("Request Sent!");
+                if (userState.referrals < (appConfig.minimumWithdrawReferrals || 0)) return tg.showAlert(`You need ${appConfig.minimumWithdrawReferrals} referrals!`);
+                if (am < min) return tg.showAlert(`Min withdraw is ${min} TK`);
+                if (am > userState.balance) return tg.showAlert("Insufficient balance");
+                
+                await db.ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(-am));
+                await db.ref('withdrawals/pending').push({ userId: tgUser.id, userName: userState.firstName, amount: am, method, account: acc, timestamp: Date.now(), status: 'pending' });
+                userState.balance -= am;
+                renderUI();
+                tg.showAlert("Withdrawal request submitted!");
             };
         };
 
-        const renderEarningsGraph = async () => {
+        const renderHistory = async () => {
+            const container = document.getElementById('history-list');
+            const snap = await db.ref('withdrawals/pending').orderByChild('userId').equalTo(tgUser.id).once('value');
+            container.innerHTML = "";
+            snap.forEach(child => {
+                const w = child.val();
+                container.innerHTML += `<div class="stat-card" style="margin-bottom:8px; display:flex; justify-content:space-between;"><span>${w.amount} TK - ${w.method}</span><span style="color:orange;">Pending</span></div>`;
+            });
+        };
+
+        const renderEarningsChart = async () => {
             const chart = document.getElementById('earnings-chart');
-            const labels = document.getElementById('earnings-chart-labels');
-            chart.innerHTML = ''; labels.innerHTML = '';
-            const dates = []; for(let i=6; i>=0; i--) { 
-                const d = new Date(); d.setDate(d.getDate()-i); dates.push(d.toISOString().slice(0,10));
-            }
-            const snaps = await Promise.all(dates.map(d => firebase.database().ref(`userEarnings/${tgUser.id}/${d}`).once('value')));
+            chart.innerHTML = "";
+            const dates = []; for(let i=6; i>=0; i--) { const d = new Date(); d.setDate(d.getDate()-i); dates.push(d.toISOString().slice(0,10)); }
+            const snaps = await Promise.all(dates.map(d => db.ref(`userEarnings/${tgUser.id}/${d}`).once('value')));
             const data = snaps.map(s => s.val() || 0);
             const max = Math.max(...data, 1);
-            data.forEach((val, i) => {
-                const h = (val/max)*100;
-                chart.innerHTML += `<div class="bar" style="height:${h}%"></div>`;
-                labels.innerHTML += `<span>${dates[i].split('-')[2]}</span>`;
+            data.forEach(v => {
+                const h = (v/max) * 100;
+                chart.innerHTML += `<div style="width:10%; background:var(--primary-color); height:${h}%; border-radius:3px 3px 0 0;"></div>`;
             });
-        };
-
-        const renderDynamicTasks = () => {
-            const container = document.getElementById('dynamic-tasks-container');
-            container.innerHTML = '';
-            if(!appConfig.tasks) return;
-            Object.keys(appConfig.tasks).forEach(key => {
-                const task = appConfig.tasks[key];
-                const done = userState.completedTasks && userState.completedTasks[key];
-                container.innerHTML += `
-                    <div class="task-container">
-                        <img src="${task.icon}" class="task-icon-img">
-                        <div class="task-info" style="flex-grow:1;"><h3>${task.name}</h3><p>${task.reward} TK</p></div>
-                        <button class="action-btn" onclick="handleClaimTask('${key}')" ${done?'disabled':''}>${done?'Claimed':'Claim'}</button>
-                    </div>`;
-            });
-        };
-
-        window.handleClaimTask = async (key) => {
-            const task = appConfig.tasks[key];
-            tg.openLink(task.url);
-            setTimeout(async () => {
-                await firebase.database().ref(`users/${tgUser.id}/completedTasks/${key}`).set(true);
-                await firebase.database().ref(`users/${tgUser.id}/balance`).set(firebase.database.ServerValue.increment(task.reward));
-                userState.balance += task.reward;
-                if(!userState.completedTasks) userState.completedTasks = {};
-                userState.completedTasks[key] = true;
-                renderUI(); tg.showAlert("Bonus Claimed!");
-            }, 5000);
         };
 
         const renderDynamicLinks = () => {
             const container = document.getElementById('dynamic-links-container');
-            container.innerHTML = '';
-            if(!appConfig.links) return;
+            container.innerHTML = "";
+            if (!appConfig.links) return;
             Object.keys(appConfig.links).forEach(key => {
-                const link = appConfig.links[key];
-                container.innerHTML += `
-                    <div class="task-container">
-                        <img src="${link.icon}" class="task-icon-img">
-                        <div class="task-info" style="flex-grow:1;"><h3>${link.name}</h3></div>
-                        <button class="action-btn" onclick="window.Telegram.WebApp.openLink('${link.url}')">Join</button>
-                    </div>`;
+                const l = appConfig.links[key];
+                container.innerHTML += `<div class="stat-card" style="display:flex; align-items:center; gap:10px; margin-top:10px;">
+                    <img src="${l.icon}" style="width:25px;">
+                    <span style="flex:1; text-align:left;">${l.name}</span>
+                    <button class="action-btn" style="padding:5px 15px;" onclick="tg.openLink('${l.url}')">Visit</button>
+                </div>`;
             });
         };
 
-        initApp();
+        const renderLeaderboard = async (type) => {
+            const list = document.getElementById('leaderboard-list');
+            list.innerHTML = "Loading...";
+            const field = type === 'referral' ? 'referrals' : 'totalEarned';
+            const snap = await db.ref('users').orderByChild(field).limitToLast(10).once('value');
+            const users = []; snap.forEach(c => users.push(c.val()));
+            users.reverse();
+            list.innerHTML = users.map((u, i) => `
+                <div class="stat-card" style="display:flex; align-items:center; margin-bottom:8px;">
+                    <span style="width:30px; font-weight:bold;">#${i+1}</span>
+                    <img src="${u.photoUrl || 'https://via.placeholder.com/30'}" style="width:30px; border-radius:50%; margin-right:10px;">
+                    <span style="flex:1; text-align:left;">${u.firstName}</span>
+                    <span style="font-weight:bold; color:var(--primary-color);">${u[field]}</span>
+                </div>`).join('');
+        };
+
+        init();
     });
     </script>
 </body>
